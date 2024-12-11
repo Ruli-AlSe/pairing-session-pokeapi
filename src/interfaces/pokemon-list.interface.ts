@@ -1,11 +1,11 @@
-export interface PokemonList {
+export interface PokemonApiResponse {
   count: number;
   next: string;
   previous: null;
-  results: Result[];
+  results: PokemonList[];
 }
 
-export interface Result {
+export interface PokemonList {
   name: string;
   url: string;
 }
