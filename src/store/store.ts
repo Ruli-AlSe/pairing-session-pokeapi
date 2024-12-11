@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { counterSlice } from '.';
+import { counterSlice, pokemonSlice } from '.';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
+    pokemon: pokemonSlice.reducer,
   },
 });
 
