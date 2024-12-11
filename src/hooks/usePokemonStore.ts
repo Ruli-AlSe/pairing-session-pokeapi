@@ -8,7 +8,7 @@ import {
 } from '../store';
 import { PokemonApiResponse } from '../interfaces';
 
-export const usePokemonStore = (limit = 20, offset = 0, maxPokemons = 150) => {
+export const usePokemonStore = (currentPage = 1, limit = 20) => {
   const { pokemons, activePokemon, message } = useAppSelector((state) => state.pokemon);
   const dispatch = useAppDispatch();
 
@@ -30,20 +30,26 @@ export const usePokemonStore = (limit = 20, offset = 0, maxPokemons = 150) => {
     }
 
     dispatch(onSetActivePokemon(pokemon));
+    localStorage.setItem('active-pokemon', JSON.stringify(pokemon));
   };
 
   const fetchPokemons = async () => {
-    if (offset >= maxPokemons) {
-      return;
-    }
+    const offset = currentPage === 1 ? 0 : (currentPage - 1) * limit;
+    const lastLimit = currentPage * limit >= 150 ? 150 - offset : limit;
 
     try {
       const pokemonsFetched: PokemonApiResponse = await fetch(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+        `https://pokeapi.co/api/v2/pokemon?limit=${lastLimit}&offset=${offset}`
       ).then((res) => res.json());
 
       if (pokemonsFetched) {
         dispatch(onSetPokemons(pokemonsFetched.results));
+      }
+
+      const pokemonStored = localStorage.getItem('active-pokemon');
+      if (pokemonStored) {
+        const parsedPokemon = JSON.parse(pokemonStored);
+        dispatch(onSetActivePokemon(parsedPokemon));
       }
     } catch (error) {
       console.error(JSON.stringify(error));

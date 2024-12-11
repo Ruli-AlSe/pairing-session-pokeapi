@@ -1,4 +1,4 @@
-import { PokemonsGrid } from '../../components';
+import { PokemonImage, PokemonsGrid } from '../../components';
 
 export const PokemonsPage = () => {
   return (
@@ -8,7 +8,10 @@ export const PokemonsPage = () => {
       </h1>
       <hr />
 
-      <PokemonsGrid />
+      <div className="w-full grid grid-cols-1 sm:grid-cols-3 my-5 sm:gap-1">
+        <PokemonImage />
+        <PokemonsGrid />
+      </div>
     </>
   );
 };
