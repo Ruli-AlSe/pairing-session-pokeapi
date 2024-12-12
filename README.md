@@ -5,6 +5,7 @@
 1. Download the project
 2. Install dependencies `pnpm install`
 3. Run the project `pnpm dev`
+4. Optional: Run tests `pnpm test` or `pnpm test:watch`
 
 Vercel deployment: https://pairing-session-pokeapi.vercel.app
 
