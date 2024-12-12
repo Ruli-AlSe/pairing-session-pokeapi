@@ -24,6 +24,7 @@ export const PokemonsGrid = () => {
             onClick={() => setActivePokemon(pokemon.url, pokemon.name)}
             onDoubleClick={() => showPokemonDetails(true)}
             className="h-10 flex justify-between items-center shadow-e-md p-3 my-1 rounded-md hover:bg-gray-100 hover:cursor-pointer"
+            aria-label={pokemon.url}
           >
             <span className="capitalize">{pokemon.name}</span>
             <img
