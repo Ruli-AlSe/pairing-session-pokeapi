@@ -21,6 +21,7 @@ export const PokemonImage = memo(({ activePokemon, message }: Props) => {
             src={activePokemon.sprites.front_default}
             alt={activePokemon.sprites.back_default}
             className="w-32 animate-fade-in"
+            aria-label="pokemon image"
           />
         ) : (
           <p className="font-bold text-gray-800 antialiased text-xl">{message}</p>
