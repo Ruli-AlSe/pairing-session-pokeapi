@@ -1,8 +1,12 @@
-import { usePokemonStore } from '../hooks/usePokemonStore';
+import { memo } from 'react';
+import { Pokemon } from '../interfaces';
 
-export const PokemonImage = () => {
-  const { activePokemon, message } = usePokemonStore();
+interface Props {
+  activePokemon?: Pokemon;
+  message: string;
+}
 
+export const PokemonImage = memo(({ activePokemon, message }: Props) => {
   return (
     <div className="h-auto col-span-1 flex items-center flex-col px-10 bg-white sm:rounded-s-3xl">
       <img
@@ -24,4 +28,4 @@ export const PokemonImage = () => {
       </div>
     </div>
   );
-};
+});

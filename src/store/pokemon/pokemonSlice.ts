@@ -7,20 +7,26 @@ export interface PokemonState {
   pokemons: PokemonList[];
   activePokemon: Pokemon | undefined;
   message: string;
+  pokeApiPage: number;
 }
 
 const initialState: PokemonState = {
   pokemons: [],
   activePokemon: undefined,
   message: 'Select a pokémon',
+  pokeApiPage: 0,
 };
 
 export const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
   reducers: {
-    onSetPokemons: (state, { payload }: PayloadAction<PokemonList[]>) => {
-      state.pokemons = payload;
+    onSetPokemons: (
+      state,
+      { payload }: PayloadAction<{ pokemons: PokemonList[]; currentPage: number }>
+    ) => {
+      state.pokemons = payload.pokemons;
+      state.pokeApiPage = payload.currentPage;
     },
     onSetActivePokemon: (state, { payload }: PayloadAction<Pokemon | undefined>) => {
       state.activePokemon = payload;

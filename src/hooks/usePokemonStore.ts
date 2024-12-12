@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   onSetActivePokemon,
   onSetPokemons,
@@ -8,15 +9,28 @@ import {
 } from '../store';
 import { PokemonApiResponse } from '../interfaces';
 
-export const usePokemonStore = (currentPage = 1, limit = 20) => {
-  const { pokemons, activePokemon, message } = useAppSelector((state) => state.pokemon);
+export const usePokemonStore = () => {
+  const { pokemons, activePokemon, message, pokeApiPage } = useAppSelector(
+    (state) => state.pokemon
+  );
   const dispatch = useAppDispatch();
 
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const maxPokemons = 150;
+  const limit = 20;
+  const totalPages = Math.ceil(maxPokemons / limit);
+
+  const pageString = searchParams.get('page') ?? 1;
+  const currentPage = isNaN(+pageString) ? 1 : +pageString;
+  if (currentPage < 1) navigate('/?page=1');
+  if (currentPage > totalPages) navigate(`/?page=${totalPages}`);
+
   useEffect(() => {
-    if (pokemons.length === 0) {
+    if (pokemons.length === 0 || pokeApiPage !== currentPage) {
       fetchPokemons();
     }
-  }, [pokemons]);
+  }, [pokemons, currentPage]);
 
   const setActivePokemon = async (url: string, pokemonName: string) => {
     if (pokemonName === activePokemon?.name) return;
@@ -43,7 +57,7 @@ export const usePokemonStore = (currentPage = 1, limit = 20) => {
       ).then((res) => res.json());
 
       if (pokemonsFetched) {
-        dispatch(onSetPokemons(pokemonsFetched.results));
+        dispatch(onSetPokemons({ pokemons: pokemonsFetched.results, currentPage }));
       }
 
       const pokemonStored = localStorage.getItem('active-pokemon');
@@ -61,6 +75,7 @@ export const usePokemonStore = (currentPage = 1, limit = 20) => {
     pokemons,
     activePokemon,
     message,
+    totalPages,
     //* Methods
     setActivePokemon,
   };

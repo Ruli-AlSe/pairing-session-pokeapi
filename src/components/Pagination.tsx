@@ -3,7 +3,7 @@
 import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 import clsx from 'clsx';
 import { createPageUrl, generatePaginationNumbers } from '../utils';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams, Link } from 'react-router-dom';
 
 interface Props {
   totalPages: number;
@@ -23,9 +23,9 @@ export const Pagination = ({ totalPages }: Props) => {
     <div className="flex text-center justify-center my-10">
       <nav>
         <ul className="flex list-style-none">
-          <li className="w-4 h-4 text-[0.3rem]">
-            <a
-              href={createPageUrl(currentPage - 1, totalPages, searchParams, pathname)}
+          <li className="w-4 h-4 mr-3">
+            <Link
+              to={createPageUrl(currentPage - 1, totalPages, searchParams, pathname)}
               aria-disabled={currentPage <= 1}
               className={clsx(
                 'relative block py-0.5 px-1 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none',
@@ -34,14 +34,14 @@ export const Pagination = ({ totalPages }: Props) => {
                 }
               )}
             >
-              <IoChevronBackOutline size={15} />
-            </a>
+              <IoChevronBackOutline size={18} />
+            </Link>
           </li>
 
           {allPages.map((page, idx) => (
             <li key={`${page} - ${idx}`} className="w-4 h-4">
-              <a
-                href={createPageUrl(page, totalPages, searchParams, pathname)}
+              <Link
+                to={createPageUrl(page, totalPages, searchParams, pathname)}
                 className={clsx(
                   'relative block py-0.5 px-1 border-0 outline-none text-[0.6rem] transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none',
                   {
@@ -51,13 +51,13 @@ export const Pagination = ({ totalPages }: Props) => {
                 )}
               >
                 {page}
-              </a>
+              </Link>
             </li>
           ))}
 
-          <li className="w-4 h-4 text-[0.3rem]">
-            <a
-              href={createPageUrl(currentPage + 1, totalPages, searchParams, pathname)}
+          <li className="w-4 h-4 ml-3">
+            <Link
+              to={createPageUrl(currentPage + 1, totalPages, searchParams, pathname)}
               className={clsx(
                 'relative block py-0.5 px-1 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none',
                 {
@@ -65,8 +65,8 @@ export const Pagination = ({ totalPages }: Props) => {
                 }
               )}
             >
-              <IoChevronForwardOutline size={15} />
-            </a>
+              <IoChevronForwardOutline size={18} />
+            </Link>
           </li>
         </ul>
       </nav>
