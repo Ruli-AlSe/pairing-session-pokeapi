@@ -15,12 +15,12 @@ export const PokemonImage = memo(({ activePokemon, message }: Props) => {
         className="my-10 sm:mt-20 sm:mb-0"
       />
 
-      <div className="h-full flex justify-center items-center">
+      <div className="h-[20vh] sm:h-full flex justify-center items-center">
         {activePokemon ? (
           <img
             src={activePokemon.sprites.front_default}
             alt={activePokemon.sprites.back_default}
-            className="w-32 animate-fade"
+            className="w-32 animate-fade-in"
           />
         ) : (
           <p className="font-bold text-gray-800 antialiased text-xl">{message}</p>

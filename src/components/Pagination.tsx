@@ -23,7 +23,7 @@ export const Pagination = ({ totalPages }: Props) => {
     <div className="flex text-center justify-center my-10">
       <nav>
         <ul className="flex list-style-none">
-          <li className="w-4 h-4 mr-3">
+          <li className="w-5 h-5 sm:w-8 sm:h-8 mr-3">
             <Link
               to={createPageUrl(currentPage - 1, totalPages, searchParams, pathname)}
               aria-disabled={currentPage <= 1}
@@ -34,16 +34,16 @@ export const Pagination = ({ totalPages }: Props) => {
                 }
               )}
             >
-              <IoChevronBackOutline size={18} />
+              <IoChevronBackOutline size={25} />
             </Link>
           </li>
 
           {allPages.map((page, idx) => (
-            <li key={`${page} - ${idx}`} className="w-4 h-4">
+            <li key={`${page} - ${idx}`} className="w-5 h-5 sm:w-8 sm:h-8">
               <Link
                 to={createPageUrl(page, totalPages, searchParams, pathname)}
                 className={clsx(
-                  'relative block py-0.5 px-1 border-0 outline-none text-[0.6rem] transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none',
+                  'text-xs sm:text-base relative block py-0.5 px-1 border-0 outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none',
                   {
                     'bg-blue-600 shadow-sm text-white hover:bg-blue-700 hover:text-white':
                       page === currentPage,
@@ -55,7 +55,7 @@ export const Pagination = ({ totalPages }: Props) => {
             </li>
           ))}
 
-          <li className="w-4 h-4 ml-3">
+          <li className="w-5 h-5 sm:w-8 sm:h-8 ml-3">
             <Link
               to={createPageUrl(currentPage + 1, totalPages, searchParams, pathname)}
               className={clsx(
@@ -65,7 +65,7 @@ export const Pagination = ({ totalPages }: Props) => {
                 }
               )}
             >
-              <IoChevronForwardOutline size={18} />
+              <IoChevronForwardOutline size={25} />
             </Link>
           </li>
         </ul>

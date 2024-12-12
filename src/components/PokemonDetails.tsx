@@ -37,7 +37,7 @@ export const PokemonDetails = () => {
         <p className="sm:text-center font-bold">weight: {weight}</p>
       </div>
 
-      <div className="w-full mt-10 px-5 grid grid-cols-1 sm:grid-cols-2">
+      <div className="w-full mt-10 px-5 grid grid-cols-1 lg:grid-cols-2">
         <Stats stats={stats} />
 
         <div className="w-full flex flex-col sm:items-center mt-16">
