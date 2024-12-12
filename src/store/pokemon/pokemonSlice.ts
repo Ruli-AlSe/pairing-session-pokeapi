@@ -8,6 +8,7 @@ export interface PokemonState {
   activePokemon: Pokemon | undefined;
   message: string;
   pokeApiPage: number;
+  displayPokemonDetails: boolean;
 }
 
 const initialState: PokemonState = {
@@ -15,6 +16,7 @@ const initialState: PokemonState = {
   activePokemon: undefined,
   message: 'Select a pokémon',
   pokeApiPage: 0,
+  displayPokemonDetails: true,
 };
 
 export const pokemonSlice = createSlice({
@@ -34,7 +36,11 @@ export const pokemonSlice = createSlice({
     onUpdateMessage: (state, { payload }: PayloadAction<string>) => {
       state.message = payload;
     },
+    onDisplayPokemonDetails: (state, { payload }: PayloadAction<boolean>) => {
+      state.displayPokemonDetails = payload;
+    },
   },
 });
 
-export const { onSetPokemons, onSetActivePokemon, onUpdateMessage } = pokemonSlice.actions;
+export const { onSetPokemons, onSetActivePokemon, onUpdateMessage, onDisplayPokemonDetails } =
+  pokemonSlice.actions;

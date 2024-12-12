@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
+  onDisplayPokemonDetails,
   onSetActivePokemon,
   onSetPokemons,
   onUpdateMessage,
@@ -10,7 +11,7 @@ import {
 import { PokemonApiResponse } from '../interfaces';
 
 export const usePokemonStore = () => {
-  const { pokemons, activePokemon, message, pokeApiPage } = useAppSelector(
+  const { pokemons, activePokemon, message, pokeApiPage, displayPokemonDetails } = useAppSelector(
     (state) => state.pokemon
   );
   const dispatch = useAppDispatch();
@@ -70,13 +71,19 @@ export const usePokemonStore = () => {
     }
   };
 
+  const showPokemonDetails = (value: boolean) => {
+    dispatch(onDisplayPokemonDetails(value));
+  };
+
   return {
     //* Properties
     pokemons,
     activePokemon,
     message,
     totalPages,
+    displayPokemonDetails,
     //* Methods
     setActivePokemon,
+    showPokemonDetails,
   };
 };

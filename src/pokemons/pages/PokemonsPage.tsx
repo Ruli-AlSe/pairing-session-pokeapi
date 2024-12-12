@@ -1,8 +1,8 @@
-import { PokemonImage, PokemonsGrid, PokemonsPageSkeleton } from '../../components';
+import { PokemonDetails, PokemonImage, PokemonsGrid, PokemonsPageSkeleton } from '../../components';
 import { usePokemonStore } from '../../hooks';
 
 export const PokemonsPage = () => {
-  const { activePokemon, message, pokemons } = usePokemonStore();
+  const { activePokemon, message, pokemons, displayPokemonDetails } = usePokemonStore();
 
   if (pokemons.length === 0) {
     return <PokemonsPageSkeleton />;
@@ -17,7 +17,7 @@ export const PokemonsPage = () => {
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-3 my-5 sm:gap-1">
         <PokemonImage activePokemon={activePokemon} message={message} />
-        <PokemonsGrid />
+        {displayPokemonDetails ? <PokemonDetails /> : <PokemonsGrid />}
       </div>
     </>
   );
