@@ -16,7 +16,7 @@ const initialState: PokemonState = {
   activePokemon: undefined,
   message: 'Select a pokémon',
   pokeApiPage: 0,
-  displayPokemonDetails: true,
+  displayPokemonDetails: false,
 };
 
 export const pokemonSlice = createSlice({
