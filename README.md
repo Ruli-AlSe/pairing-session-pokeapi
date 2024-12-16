@@ -31,6 +31,10 @@ This project is structured as follows, I left some suggestions in case anyone wa
  ┃ ┃ ┣ 📂pokemon          - Proposal for storing reducers according with the global store
  ┃ ┃ ┣ 📂ui *
  ┃ ┃ ┣ 📂cart *
+ ┃ ┣ 📂tests              - Folder that contains all tests, the structure is similar to the 'src' folder
+ ┃ ┃ ┣ 📂hooks
+ ┃ ┃ ┣ 📂pokemons
+ ┃ ┃ ┣ 📂...
  ┃ ┣ 📂utils              - Single porpuse functions
  ┃ ┣ 📜MyApp.tsx
  ┃ ┣ 📜main.tsx
