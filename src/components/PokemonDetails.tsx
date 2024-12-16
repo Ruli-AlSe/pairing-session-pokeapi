@@ -13,7 +13,7 @@ export const PokemonDetails = () => {
   return (
     <div
       className={clsx(
-        'w-full mt-2 sm:m-0 flex flex-col bg-white col-span-2 h-[80vh] animate-fade-in',
+        'w-full mt-2 sm:m-0 flex flex-col bg-white col-span-2 lg:h-[80vh] animate-fade-in pb-5',
         {
           'animate-fade-out': !displayPokemonDetails,
           'animate-fade-in': displayPokemonDetails,
